@@ -1,10 +1,11 @@
 <?php
-$choice=$_GET['chi']; 
-//echo "the category is $choice";
-
 include ("connect.php");
+
+$choice=$_GET['chi']; 
+echo "the category is $choice";
+
 // Select statement to retreive all information from table using a passed value
-$result = mysqli_query($link, "SELECT * FROM ad_table WHERE cat_code='$choice'");
+$result = mysqli_query($link, "SELECT * FROM appt_table WHERE emp_id= $choice");
 if(!$result){
   echo('bad search');
 }

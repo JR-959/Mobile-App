@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>First Mobile Example</title>
+<title>Shipping Ingo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -17,12 +17,35 @@
     </div>
         
 	<div data-role="content">
-	  <ul data-role="listview" >
-        <li><a href="one.php" data-ajax="false">Current Location</a></li>
-        <li><a href="listbox.php" data-ajax="false">Appointments</a></li>
-        <li><a href="photo_taker.php" data-ajax="false">Take a photo</a></li>
-        <li><a href="shipping.php" data-ajax="false">Shipping Info</a></li>
-      </ul>
+	  <?
+        include ("connect.php");
+        $result = mysqli_query($link, "SELECT * FROM shp_table");
+        if(!$result){
+          echo('bad search');
+        }
+        else
+        {
+          echo('good search');
+            while ($row = mysqli_fetch_array($result))
+          {
+              echo('in the loop');
+                ?> 
+                    <table width="400" border="1" cellpadding="0">
+                    <tr>
+
+                       <td><?php echo  $row['shp_company'] ; ?></td> 
+                       <td><?php echo  $row['shp_date'] ; ?></td>
+                       <td><?php echo  $row['shp_number'] ; ?></td>  
+
+
+                        </tr>
+                    </table>
+        <?
+        
+  }  //end of while loop
+    
+} // end of IF else statement  
+      ?>
     </div>    
     
 	<div data-role="footer">
